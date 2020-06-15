@@ -41,7 +41,7 @@ def get_check_duration(target, timezone):
         return 'now'
 
 
-def open(url):
+def open_url(url):
     webbrowser.open_new(url)
 
 
@@ -65,7 +65,7 @@ class YoutubeAlarmClock:
             start = delta.seconds
         self.lullaby = f'https://youtu.be/9IbQi4qZzh4?t={start}'
         self.alarm = links['alarm']
-        self.set_check_duration()
+        self.check_duration = get_check_duration(self.alarm_time, self.tz)
         print(f"alarm time: {self.alarm_time}")
         print(f"check dura: {self.check_duration}")
         self.play_lullaby()
@@ -93,10 +93,10 @@ class YoutubeAlarmClock:
 
     def play_lullaby(self):
         self.kill_browser()
-        open(self.lullaby)
+        open_url(self.lullaby)
 
     def stop_lullaby(self):
         self.kill_browser()
 
     def play_alarm(self):
-        open(self.alarm)
+        open_url(self.alarm)
