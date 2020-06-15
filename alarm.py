@@ -41,6 +41,10 @@ def get_check_duration(target, timezone):
         return 'now'
 
 
+def open(url):
+    webbrowser.open_new(url)
+
+
 class YoutubeAlarmClock:
     durations = {
         'hour': 3600,
@@ -51,6 +55,7 @@ class YoutubeAlarmClock:
 
     def __init__(self):
         input_time = get_input_time()
+        self.browser = 'Google Chrome'
         self.tz = dt.timezone(dt.timedelta(hours=9))
         self.alarm_time = get_alarm_time(input_time)
         if dtt.now(self.tz).date() < self.alarm_time.date():
@@ -60,8 +65,6 @@ class YoutubeAlarmClock:
             start = delta.seconds
         self.lullaby = f'https://youtu.be/9IbQi4qZzh4?t={start}'
         self.alarm = links['alarm']
-        self.kill_chrome = lambda: os.system("killall -9 'Google Chrome'")
-        self.open = lambda url: webbrowser.open_new(url)
         self.set_check_duration()
         print(f"alarm time: {self.alarm_time}")
         print(f"check dura: {self.check_duration}")
@@ -82,15 +85,18 @@ class YoutubeAlarmClock:
             self.set_check_duration()
             print(self.check_duration)
 
+    def kill_browser(self):
+        os.system(f"killall -9 '{self.browser}'")
+
     def set_check_duration(self):
         self.check_duration = get_check_duration(self.alarm_time, self.tz)
 
     def play_lullaby(self):
-        self.kill_chrome()
-        self.open(self.lullaby)
+        self.kill_browser()
+        open(self.lullaby)
 
     def stop_lullaby(self):
-        self.kill_chrome()
+        self.kill_browser()
 
     def play_alarm(self):
-        self.open(self.alarm)
+        open(self.alarm)
