@@ -7,3 +7,6 @@
 * 추후 계획
     - 볼륨 조정
     - 음악 셔플링
+    
+# Example
+![example](https://user-images.githubusercontent.com/24601847/84619202-6578b080-af0f-11ea-9f14-a82d0a2cb900.png)
