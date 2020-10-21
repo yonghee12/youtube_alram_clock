@@ -4,7 +4,7 @@ import webbrowser
 from datetime import datetime as dtt
 from time import sleep
 
-from config import links
+from links import links
 
 
 def get_input_time():
