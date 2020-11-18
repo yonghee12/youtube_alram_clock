@@ -4,7 +4,7 @@ import webbrowser
 from datetime import datetime as dtt
 from time import sleep
 
-from links import links
+from links import links_dic
 
 
 def get_input_time():
@@ -64,7 +64,7 @@ class YoutubeAlarmClock:
             delta = dtt.now(self.tz) - dtt.combine(dtt.now(self.tz), dt.time(), tzinfo=self.tz)
             start = delta.seconds
         self.lullaby = f'https://youtu.be/9IbQi4qZzh4?t={start}'
-        self.alarm = links['alarm']
+        self.alarm = links_dic['alarm']
         self.check_duration = get_check_duration(self.alarm_time, self.tz)
         print(f"alarm time: {self.alarm_time}")
         print(f"check dura: {self.check_duration}")
